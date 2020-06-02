@@ -6,6 +6,8 @@ const bodyParser =require('body-parser');
 var cookieParser =  require('cookie-parser')
 const expressValidator =require("express-validator");
 const dotenv = require("dotenv");
+const fs = require('fs');
+const cors = require('cors');
 dotenv.config();
 
 //db
@@ -28,7 +30,18 @@ mongoose.connection.on("error",err=>{console.log(`DB Connection: ${err.message}`
 const postRoutes = require("./routes/post");
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
-
+// apiDocs
+app.get("/", (req, res) => {
+    fs.readFile("docs/apiDocs.json", (err, data) => {
+        if (err) {
+            res.status(400).json({
+                error: err
+            });
+        }
+        const docs = JSON.parse(data);
+        res.json(docs);
+    });
+});
 
 /*const myOwnMiddleware=(req,res,next)=>{ 
 	console.log("middleware applied!!!");
