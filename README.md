@@ -4,7 +4,7 @@ This project create for login process
 
 Getting Started
 
-This is a backend process create by node.js. this is a api and date save in mangosdb.
+This is a backend process create by node.js. this is a api and data save in mangosdb.
 
 
 Give examples
